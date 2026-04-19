@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            width: 500px;
+            margin: auto;
+        }
+        h1{
+    
+            margin-bottom: 20px;
+        }
+        .quote{
+            height: 100px;
+            background-color: rgb(165, 124, 205);
+            width: 500px;
+            border-radius: 20px;
+            padding: 10px ;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+       
+        .author{
+            height: 50px;
+            width: 200px;
+            background-color: rgb(233, 182, 234);
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+        }
+        .genrate{
+            padding: 15px 60px;
+            border: none;
+            border-radius: 20px;
+            background-color: rgb(52, 22, 114);
+            margin-top: 40px;
+            font-size: 1.25rem;
+            color:white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Random Qoute Genrator</h1>
+        <p class="quote"> Life is what happens when you're busy making other plans.</p>
+        <p class="author">- John Lennon</p>
+        <button class="genrate">Genrate</button>
+    </div>
+    <script>
+        let quote=document.querySelector(".quote");
+        let author=document.querySelector(".author");
+        let genrate=document.querySelector(".genrate");
+        let baseUrl = "https://dummyjson.com/quotes/random";
+
+        async function getQoute() {
+            try {
+                let res = await fetch(baseUrl);
+                let data = await res.json();
+                quote.innerText=data.quote;
+                author.innerText="- " +data.author;
+            }
+            catch (error) {
+                console.log("error");
+            }
+        }
+        genrate.addEventListener("click",()=>{
+            getQoute();
+        })
+        
+
+    </script>
+</body>
+
+</html>
